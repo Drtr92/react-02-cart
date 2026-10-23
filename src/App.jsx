@@ -44,19 +44,19 @@ function App() {
                 <tr>
                     <th>상품명</th>
                     <th>수량 제어</th>
-                    <th>
-                        <button onClick={() => {
-                            const result = cart.filter((v, i) => { return i !== index });
-                            setCart(result);
-                        }}>삭제</button>
-                    </th>
+                    <th>관리</th>
                 </tr>
                 </thead>
                 <tbody>
                 {cart.map((item, index) => <tr key={index}>
                     <td>{item.name}</td>
                     <td>수량변경</td>
-                    <td>삭제</td>
+                    <td>
+                        <button onClick={() => {
+                            const result = cart.filter((v, i) => { return i !== index });
+                            setCart(result);
+                        }}>삭제</button>
+                    </td>
                 </tr>)}
                 </tbody>
             </table>
