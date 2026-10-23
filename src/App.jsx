@@ -25,16 +25,23 @@ function App() {
         setCart(result);
     }
 
-    const handleUpdateQuantity = (index, number) => {
+    const handleUpdateQuantity = (targetIndex, number) => {
+        // 1. 최소 수량 체크
+        if (cart[targetIndex].quantity + number < 1) return;
 
-        const newCart = [...cart];
-        const nextQuantity = newCart[index].quantity + number;
-        if (nextQuantity < 1) {
-            return;
-        }
-        newCart[index].quantity = nextQuantity;
-        setCart(newCart);
-    }
+        // 2. map을 돌면서 수정할 대상 객체만 {...item}으로 새로 복제하여 반환
+        const updatedCart = cart.map((item, index) => {
+            if (index === targetIndex) {
+                return {
+                    ...item, // 객체 복제 (새 메모리 주소 생성)
+                    quantity: item.quantity + number // 변경할 속성만 덮어쓰기
+                };
+            }
+            return item; // 바뀌지 않은 객체는 그대로 유지
+        });
+
+        setCart(updatedCart);
+    };
 
     const totalQuantity = cart.reduce((sum, item) => {
         return item.quantity + sum
