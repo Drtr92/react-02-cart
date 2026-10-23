@@ -81,11 +81,11 @@ function App() {
                         </button>
                         {item.quantity}
                         <button onClick={() => {
-                            handleUpdateQuantity(index, +1)
+                            handleUpdateQuantity(index, 1)
                         }}>+1
                         </button>
                         <button onClick={() => {
-                            handleUpdateQuantity(index, +10)
+                            handleUpdateQuantity(index, 10)
                         }}>+10
                         </button>
                     </td>
