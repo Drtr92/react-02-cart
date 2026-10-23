@@ -41,7 +41,7 @@ function App() {
         });
 
         setCart(updatedCart);
-    };
+    }
 
     const totalQuantity = cart.reduce((sum, item) => {
         return item.quantity + sum
