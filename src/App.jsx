@@ -53,7 +53,7 @@ function App() {
                     <td>수량변경</td>
                     <td>
                         <button onClick={() => {
-                            const result = cart.filter((v, i) => { return i !== index });
+                            const result = cart.filter((_, i) => { return i !== index });
                             setCart(result);
                         }}>삭제</button>
                     </td>
