@@ -40,9 +40,6 @@ function App() {
         setCart(result);
     }
 
-    // totalQuantity라는 일반 변수는 값을 저장할 때 'state'를 이용하고 있는 중임
-    // react는 state의 값이 변하는지를 감시하고 있기 때문에
-    // 값이 변하여 재계산을 하는 'react에서의 리렌더링 => 재 계산을 하여 브라우저에 코드를 제공하는 일' 이라는 과정에 포함됨
     const totalQuantity = cart.reduce((sum, item) => {
         return item.quantity + sum
     }, 0);
