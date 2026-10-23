@@ -2,11 +2,8 @@ import {useState} from "react";
 
 function App() {
 
-    const [name, setName] = useState("");   // input 관리용
-    const [cart, setCart] = useState([]);   // 목록
-
-    // cart는 목록입니다. 요소의 형태를 생각해보면,
-    // 이 요소는 이름을 가져야되고, 수량도 가져야 됨
+    const [name, setName] = useState("");
+    const [cart, setCart] = useState([]);
 
     return (
         <>
@@ -34,9 +31,6 @@ function App() {
             <table border={1}
                    cellPadding={10}
                    style={{
-                       // React에서 style 속성은 객체로 전달해줄 수 있으며,
-                       // key: value 형태로 프로퍼티를 기록하는데
-                       // key에는 camelCase로 작성해주어야 함
                        width: "100%",
                        borderCollapse: "collapse"
                    }}>
@@ -52,7 +46,6 @@ function App() {
                     <td>{item.name}</td>
                     <td>
                         <button onClick={() => {
-                            // 지금 현재 수량이 1 이하이면, 실행하지 않게끔
                             if (item.quantity <= 1) {return;}
                             const newCart = [...cart];
                             newCart[index].quantity -= 1;
@@ -62,13 +55,6 @@ function App() {
                         }}>-</button>
                         {item.quantity}
                         <button onClick={() => {
-                            // cart의 정보 중, index 자리에 있는 요소의 quantity 값을 + 1
-                            // cart[index].quantity += 1;  =>  이렇게 쓰면 안됨 / react가 바뀐걸 감지를 못함
-                            //                             =>  state의 값을 바꿀땐 set을 쓰라고 했음
-
-                            // 1. react가 알아채게끔 하려면, 새 배열을 cart에 넣어야 됨 => 새 배열을 만들고
-                            // 2. 값을 바꾸고
-                            // 3. 그렇게 만들어진 배열을 setCart에 넣게 단계벌로 진행하는게 이해하기 쉽고 편함
                               const newCart = [...cart];
                               newCart[index].quantity += 1;
                               setCart(newCart);
