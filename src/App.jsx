@@ -7,7 +7,8 @@ function App() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (name === "" || name === " ") {
+        const trimmedName = name.trim();
+        if (!trimmedName) {
             return;
         }
         setCart([...cart, {name: name, quantity: 1}]);
