@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import styles from "./App.module.css";
 
-function App() {
-    const [name, setName] = useState("");
-    const [cart, setCart] = useState([]);
+type Product = {
+    name: string;
+    quantity: number;
+}
 
-    const handleSubmit = event => {
+function App() {
+    const [name, setName] = useState<string>("");
+    const [cart, setCart] = useState<Product[]>([]);
+
+    const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
         const trimmedName = name.trim();
         if (!trimmedName) {
@@ -15,18 +20,11 @@ function App() {
         setName("");
     };
 
-    const handleChange = e => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
         setName(e.target.value);
     };
 
-    const handleDeleteButton = index => {
-        const result = cart.filter((_, i) => {
-            return i !== index;
-        });
-        setCart(result);
-    };
-
-    const handleUpdateQuantity = (targetIndex, number) => {
+    const handleUpdateQuantity = (targetIndex: number, number: number) => {
         // 1. 최소 수량 체크
         if (cart[targetIndex].quantity + number < 1) return;
 
@@ -47,6 +45,13 @@ function App() {
     const totalQuantity = cart.reduce((sum, item) => {
         return item.quantity + sum;
     }, 0);
+
+    const handleDeleteButton = (index: number) => {
+        const result = cart.filter((_, i) => {
+            return i !== index;
+        });
+        setCart(result);
+    };
 
     return (
         <div className={styles.container}>
