@@ -173,7 +173,7 @@ function App() {
         setName("");
     };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
 
